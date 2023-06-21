@@ -3,7 +3,12 @@ import './App.css'
 import Search from './components/Search';
 import Weather from './components/Weather';
 
+
+
 function App() {
+  // API 키를 환경변수로 불러오기
+  const API_KEY = import.meta.env.VITE_API_KEY;
+
   const [location , setLocation] = useState('');  // 검색어
   const [weather , setWeather] = useState(null);  // 날씨 데이터 값이 비었음을 명시적 선언
 
@@ -12,7 +17,7 @@ function App() {
 
   // 날씨 요청 함수
   const fetchWeather = () => {
-    const apiKey = "e11462160015cffa69954c9f67741b7b";
+    const apiKey = API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&lang=kr`;
     
     setIsLoading(true); // 요청 시작 시 로딩 상태 on
