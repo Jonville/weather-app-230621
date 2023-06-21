@@ -17,7 +17,7 @@ function App() {
 
   // 날씨 요청 함수
   const fetchWeather = () => {
-    const apiKey = API_KEY;
+    const apiKey = 'e11462160015cffa69954c9f67741b7b';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&lang=kr`;
     
     setIsLoading(true); // 요청 시작 시 로딩 상태 on
