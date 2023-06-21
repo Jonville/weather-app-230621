@@ -9,11 +9,15 @@ function App() {
 
   const [errorMessage , setErrorMessage] = useState('');
 
+  const [isLoading , setIsLoading] = useState(false);
+
   // 날씨 요청 함수
   const fetchWeather = () => {
     const apiKey = "e11462160015cffa69954c9f67741b7b";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&lang=kr`;
-  
+    
+    setIsLoading(true); // 요청 시작 시 로딩 상태 on
+
     fetch(url)
       .then(res => res.json())  // json 포맷으로 변환
       .then(data => {
@@ -28,8 +32,11 @@ function App() {
       })
         // 에러처리
       .catch(() => {
-        console.log("에러")
+        setErrorMessage("날씨 정보를 가져오는 중입니다")
         
+      })
+      .finally(() => {
+        setIsLoading(false) // 요청 완료 시 로딩 상태 해제
       })
   }
 
@@ -53,10 +60,15 @@ function App() {
         handleWeatherSearch={handleWeatherSearch}
         location={location}
       />
+      {
+        isLoading ? (
+          <p className='loading'>Loading.....</p>
+        ) : (
       <Weather
         weather={weather}
         errorMessage={errorMessage}
       />
+      )}
     </div>
   )
 }
