@@ -8,7 +8,6 @@ function App() {
   const [weather , setWeather] = useState(null);  // 날씨 데이터 값이 비었음을 명시적 선언
 
   const [errorMessage , setErrorMessage] = useState('');
-
   const [isLoading , setIsLoading] = useState(false);
 
   // 날씨 요청 함수
